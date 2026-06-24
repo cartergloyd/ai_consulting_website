@@ -293,6 +293,60 @@ a.issue-card:hover {
   background: rgba(184, 150, 12, 0.16);
 }
 
+.issue-section pre {
+  margin: 0;
+  padding: 20px 24px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.42);
+  overflow-x: auto;
+}
+
+.issue-section code {
+  font: inherit;
+  font-size: 0.84rem;
+  color: var(--champagne);
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.issue-section table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  color: rgba(244, 244, 246, 0.88);
+}
+
+.issue-section th,
+.issue-section td {
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+
+.issue-section th {
+  color: var(--gold);
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  background: rgba(184, 150, 12, 0.08);
+}
+
+.issue-section td strong {
+  color: var(--champagne);
+}
+
+.issue-section blockquote {
+  margin: 0;
+  padding: 14px 22px;
+  border-left: 3px solid var(--gold);
+  background: rgba(184, 150, 12, 0.07);
+  color: rgba(244, 244, 246, 0.78);
+  font-size: clamp(0.92rem, 1.25vw, 1.08rem);
+  line-height: 1.75;
+}
+
 @media (max-width: 760px) {
   .newsletter-ribbon {
     align-items: flex-start;

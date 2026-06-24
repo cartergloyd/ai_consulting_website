@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Newsletters | goldAI</title>
+    <title>Turn AI pilots into operating capacity. | goldAI Newsletter</title>
+    <meta name="description" content="AI work becomes durable when it is attached to a workflow owner, a measurable throughput problem, and a handoff pattern that survives without constant supervision.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Fraunces:opsz,wght@9..144,700;9..144,800&display=swap" rel="stylesheet">
@@ -11,29 +12,52 @@
     <link rel="stylesheet" href="footer.css">
   </head>
   <body>
-    <main class="newsletter-page">
+    <main class="newsletter-page issue-page">
       <nav class="newsletter-ribbon" aria-label="Primary navigation">
         <a class="wordmark" href="index.html">goldAI</a>
         <div class="ribbon-links">
           <a href="index.html">Home</a>
-          <a href="newsletters.html">Latest Newsletter</a>
+          <a href="newsletters.html">Newsletters</a>
           <a class="contact-button" href="contact.html">Contact Us</a>
         </div>
       </nav>
 
-      <header class="newsletter-hero">
-        <span>Newsletters</span>
-        <h1>Operating notes for leaders turning AI into infrastructure.</h1>
-        <p>Short field notes on workflow architecture, automation economics, human review, and the details that make AI implementation survive contact with real operations.</p>
-      </header>
+      <article class="newsletter-article">
+        <header class="issue-header">
+          <span>Workflow Notes / Issue 01</span>
+          <h1>Turn AI pilots into operating capacity.</h1>
+          <time datetime="2026-01-15">January 15, 2026</time>
+        </header>
+        <img class="issue-visual" src="assets/latest-workflows.png" alt="Abstract enterprise workflow architecture with gold automation paths">
 
-      <section class="newsletter-list" aria-labelledby="archive-title">
-        <div class="section-label" id="archive-title">Archive</div>
+        <section class="issue-section">
+          <span>Opening note</span>
+          <h2>The operating idea</h2>
+          <p>AI work becomes durable when it is attached to a workflow owner, a measurable throughput problem, and a handoff pattern that survives without constant supervision.</p>
+        </section>
+
+        <section class="issue-section">
+          <span>Pattern</span>
+          <h2>Separate reasoning from repetition</h2>
+          <p>Let agents handle interpretation, synthesis, and exception review. Turn recurring moves into scripts, integrations, and system writebacks so cost falls as volume rises.</p>
+          <ul>
+            <li>Define the trigger that starts the work.</li>
+            <li>Name the human decision that must stay accountable.</li>
+            <li>Move every repeatable step into deterministic infrastructure.</li>
+          </ul>
+        </section>
+
+        <section class="issue-section callout">
+          <span>Executive question</span>
+          <h2>What would happen if this workflow doubled tomorrow?</h2>
+          <p>If the answer is more meetings, more manual review, or more spreadsheet handling, the automation target is probably hiding in plain sight.</p>
+        </section>
+
         <form class="subscribe-widget" action="mailto:hello@goldai.com" method="post" enctype="text/plain">
           <div>
             <span>Subscribe</span>
             <h2>Get the GoldAI Dispatch.</h2>
-            <p>Operating notes on AI implementation, workflow automation, and the systems work behind measurable ROI.</p>
+            <p>Short operating notes for leaders turning AI from pilots into workflow infrastructure.</p>
           </div>
           <label>
             Email
@@ -43,28 +67,12 @@
             </span>
           </label>
         </form>
-        <!-- newsletters:featured:start -->
-        <a class="issue-card featured" href="workflow-notes-02.html">
-          <img src="assets/enterprise-command-center.png" alt="Abstract enterprise command center with infrastructure monitoring signals">
-          <div>
-            <span>Issue 02 &mdash; June 24, 2026</span>
-            <h2>One engineer's workload, zero new hires.</h2>
-            <p>An on-prem LLM now triages infrastructure logs autonomously — suppressing noise, escalating real incidents, and teaching itself to get quieter over time.</p>
-          </div>
-        </a>
-        <!-- newsletters:featured:end -->
-        <div class="archive-grid">
-          <!-- newsletters:archive:start -->
-          <a class="issue-card" href="workflow-notes-01.html">
-            <div>
-              <span>Issue 01 &mdash; January 15, 2026</span>
-              <h2>Turn AI pilots into operating capacity.</h2>
-              <p>AI work becomes durable when it is attached to a workflow owner, a measurable throughput problem, and a handoff pattern that survives without constant supervision.</p>
-            </div>
-          </a>
-          <!-- newsletters:archive:end -->
-        </div>
-      </section>
+
+        <section class="issue-actions" aria-label="Newsletter actions">
+          <a href="newsletters.html">View archive</a>
+          <a href="contact.html">Discuss a workflow</a>
+        </section>
+      </article>
     </main>
 
     <footer class="site-footer">
@@ -79,7 +87,6 @@
           <h2>Our thinking</h2>
           <a href="approach.html">Workflow architecture</a>
           <a href="newsletters.html">Newsletters</a>
-          <a href="newsletter-template.html">Latest newsletter</a>
           <a href="index.html#latest-title">Articles</a>
           <a href="index.html#latest-title">Insights</a>
         </section>
