@@ -38,10 +38,7 @@ button {
 .homepage {
   position: relative;
   min-height: 100vh;
-  background:
-    linear-gradient(90deg, rgba(7, 7, 7, 0.88), rgba(9, 9, 9, 0.62) 48%, rgba(9, 9, 9, 0.18)),
-    linear-gradient(0deg, rgba(7, 7, 7, 0.46), rgba(7, 7, 7, 0.12)),
-    url("assets/enterprise-command-center.png") center / cover no-repeat;
+  background: var(--black);
 }
 
 .homepage::after {
@@ -155,8 +152,7 @@ button {
   border-bottom: 0;
 }
 
-.site-menu a:hover,
-.hero-actions a:hover {
+.site-menu a:hover {
   color: var(--champagne);
 }
 
@@ -164,38 +160,79 @@ button {
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: center;
-  min-height: 70vh;
-  padding: 100px clamp(22px, 7vw, 104px) 48px;
+  align-items: flex-end;
+  width: 100%;
+  aspect-ratio: 8 / 3;
+  min-height: 380px;
+  padding: clamp(32px, 5vw, 68px) clamp(22px, 7vw, 104px);
+  overflow: hidden;
+  background: url("assets/enterprise-command-center.png") center / cover no-repeat;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg,
+      rgba(13, 13, 13, 0.97) 0%,
+      rgba(13, 13, 13, 0.82) 28%,
+      rgba(13, 13, 13, 0.44) 56%,
+      rgba(13, 13, 13, 0.06) 100%
+    ),
+    linear-gradient(0deg,
+      rgba(13, 13, 13, 0.76) 0%,
+      rgba(13, 13, 13, 0) 52%
+    );
 }
 
 .hero-content {
-  width: min(940px, 100%);
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 22px;
+  max-width: 580px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hero-badge > span:first-child {
+  color: var(--gold);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.hero-badge > span:last-child {
+  padding: 5px 14px;
+  border: 1px solid rgba(245, 230, 163, 0.36);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: rgba(244, 244, 246, 0.68);
 }
 
 .hero h1 {
   margin: 0;
-  max-width: 960px;
   font-family: "Fraunces", Georgia, serif;
-  font-size: clamp(1.8rem, 3.8vw, 3.6rem);
-  line-height: 1.05;
+  font-size: clamp(2rem, 4.2vw, 4.8rem);
+  line-height: 1;
   letter-spacing: 0;
   text-wrap: balance;
-}
-
-.hero p {
-  max-width: 760px;
-  margin: 28px 0 0;
-  color: rgba(244, 244, 246, 0.82);
-  font-size: clamp(0.95rem, 1.45vw, 1.22rem);
-  line-height: 1.75;
+  color: var(--white);
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 38px;
+  gap: 12px;
 }
 
 .hero-actions a {
@@ -203,21 +240,30 @@ button {
   align-items: center;
   justify-content: center;
   min-height: 50px;
-  padding: 0 18px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  background: rgba(13, 13, 13, 0.48);
-  color: var(--white);
-  font-size: 0.78rem;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-size: 0.82rem;
   font-weight: 500;
   text-transform: uppercase;
-  backdrop-filter: blur(12px);
+  letter-spacing: 0.04em;
+  transition: opacity 0.16s;
+}
+
+.hero-actions a:hover {
+  opacity: 0.8;
 }
 
 .hero-actions a:first-child {
-  border-color: rgba(184, 150, 12, 0.9);
-  color: var(--black);
+  border: 1px solid var(--gold);
   background: var(--gold);
+  color: var(--black);
+}
+
+.hero-actions a:nth-child(2) {
+  border: 1px solid rgba(244, 244, 246, 0.48);
+  background: rgba(244, 244, 246, 0.1);
+  color: var(--white);
+  backdrop-filter: blur(12px);
 }
 
 .latest {
@@ -351,12 +397,16 @@ a.latest-card:hover {
   }
 
   .hero {
-    align-items: flex-end;
-    padding-bottom: 42px;
+    aspect-ratio: auto;
+    min-height: 68vh;
+    padding-bottom: 48px;
   }
 
   .hero-actions a {
-    flex: 1 1 100%;
+    flex: 1 1 calc(50% - 6px);
+    min-height: 46px;
+    padding: 0 18px;
+    font-size: 0.76rem;
   }
 
   .latest-grid {
