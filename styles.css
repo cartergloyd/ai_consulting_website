@@ -208,15 +208,16 @@ button { font: inherit; }
 
 
 /* ═══════════════════════════════════════════════════════════════════
-   HERO (full-bleed cinematic banner)
-   .hero uses .full-bleed to escape .page-container. .hero-content
-   re-centers text and buttons to --content-width via max-width.
+   HERO (cinematic full-width banner)
+   Natural block child of <main> — no escape trick needed.
+   .hero-content constrains text/buttons to --content-width.
    ═══════════════════════════════════════════════════════════════════ */
 .hero {
   position: relative;
   z-index: 1;
   display: flex;
   align-items: flex-end;
+  width: 100%;
   aspect-ratio: 2.52;
   min-height: 400px;
   overflow: hidden;
@@ -357,31 +358,27 @@ button { font: inherit; }
 /* ═══════════════════════════════════════════════════════════════════
    CAROUSEL SECTION
 
-   Structure (all inside .page-container):
-     .carousel-bar.full-bleed     — section label bar, viewport-wide
-       .carousel-bar-inner        — re-centers h2 to --content-width
-     .carousel-outer.full-bleed   — stage, viewport-wide
-       .carousel-viewport         — overflow:hidden + edge fade masks
-         .carousel-track          — flex row, animated, width:max-content
+   Structure (direct children of <main>, naturally full-width):
+     .carousel-bar        — section label bar
+       .carousel-bar-inner  — constrains h2 to --content-width
+     .carousel-outer        — stage with vertical padding
+       .carousel-viewport   — overflow:hidden + edge fade masks
+         .carousel-track    — flex row, animated, width:max-content
 
-   Loop mechanic:
-     JS renders CAROUSEL_CARDS twice (set A then set B) into the track.
-     The keyframe moves the track by -50% of its own width, which equals
-     exactly one full card set. When the loop restarts, set B occupies
-     the same position set A started in — the reset is invisible.
-
+   Loop mechanic: see script.js for the full explanation.
      Cards use margin-right for spacing (not flex gap) so the gap
      between the last card of set A and the first card of set B is
      identical to every other inter-card gap, removing the seam.
    ═══════════════════════════════════════════════════════════════════ */
 
-/* Section label bar: full-bleed background, h2 aligned to content grid */
+/* Section label bar — naturally full-width, h2 aligned to content grid */
 .carousel-bar {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   background: rgba(13, 13, 13, 0.94);
 }
 
+/* Constrains the label text to --content-width, matching the hero layout */
 .carousel-bar-inner {
   display: flex;
   align-items: center;
@@ -399,7 +396,7 @@ button { font: inherit; }
   text-transform: uppercase;
 }
 
-/* Outer stage: full-bleed container for the viewport */
+/* Outer stage — naturally full-width, provides vertical rhythm */
 .carousel-outer {
   padding-block: clamp(32px, 5vw, 56px);
   background: var(--black);

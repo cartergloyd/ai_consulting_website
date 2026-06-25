@@ -36,58 +36,57 @@
         <a href="industries.html">Industries</a>
       </nav>
 
-      <!-- ── Centered content container (max-width: --content-width) ─ -->
-      <div class="page-container">
-
-        <!-- Hero: full-bleed escape; .hero-content re-centers to --content-width -->
-        <section class="hero full-bleed" aria-labelledby="hero-title">
-          <video class="hero-bg" autoplay muted loop playsinline poster="assets/enterprise-command-center.png">
-            <source src="assets/hero.mp4" type="video/mp4">
-          </video>
-          <div class="hero-content">
-            <div class="hero-text">
-              <div class="hero-badge">
-                <span class="hero-badge-icon"></span>
-                <span class="hero-badge-name">goldAI</span>
-                <span class="hero-badge-tag">AI Workflow Consulting</span>
-              </div>
-              <h1 id="hero-title">The gap between AI potential and results is where we live.</h1>
+      <!-- ── Hero ──────────────────────────────────────────────────────
+           Naturally full-width as a block child of <main>.
+           .hero-content re-centers text/buttons to --content-width.
+           ─────────────────────────────────────────────────────────── -->
+      <section class="hero" aria-labelledby="hero-title">
+        <video class="hero-bg" autoplay muted loop playsinline poster="assets/enterprise-command-center.png">
+          <source src="assets/hero.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+          <div class="hero-text">
+            <div class="hero-badge">
+              <span class="hero-badge-icon"></span>
+              <span class="hero-badge-name">goldAI</span>
+              <span class="hero-badge-tag">AI Workflow Consulting</span>
             </div>
-            <div class="hero-actions" aria-label="Hero actions">
-              <a href="contact.html">Engage</a>
-              <a href="approach.html">Research</a>
-            </div>
+            <h1 id="hero-title">The gap between AI potential and results is where we live.</h1>
           </div>
-        </section>
-
-        <!-- ── Carousel section ──────────────────────────────────────
-             .carousel-bar and .carousel-outer are both full-bleed,
-             escaping .page-container to span the full viewport.
-             Cards are injected by script.js from CAROUSEL_CARDS.
-             ─────────────────────────────────────────────────────── -->
-        <section class="carousel-section" aria-labelledby="latest-title">
-
-          <!-- Section label bar: full-bleed background, h2 aligned to grid -->
-          <div class="carousel-bar full-bleed">
-            <div class="carousel-bar-inner">
-              <h2 id="latest-title">The Latest</h2>
-            </div>
+          <div class="hero-actions" aria-label="Hero actions">
+            <a href="contact.html">Engage</a>
+            <a href="approach.html">Research</a>
           </div>
+        </div>
+      </section>
 
-          <!-- Carousel stage: full-bleed; viewport clips + masks the track -->
-          <div class="carousel-outer full-bleed">
-            <div class="carousel-viewport">
-              <!-- JS fills this with two identical card sets (set A + set B).
-                   The CSS animation shifts set A off-screen left by exactly
-                   one set-width (-50%), at which point set B is in the same
-                   position set A started — making the loop invisible. -->
-              <div class="carousel-track" id="carousel-track" role="list" aria-label="Latest articles and newsletters"></div>
-            </div>
+      <!-- ── Carousel ───────────────────────────────────────────────────
+           Naturally full-width as a block child of <main>.
+           .carousel-bar-inner re-aligns the label to --content-width.
+           Cards are injected by script.js from CAROUSEL_CARDS.
+
+           Loop mechanic: JS renders the card list twice (set A + set B).
+           The CSS animation shifts the track by -50% of its own width,
+           which equals exactly one card-set's width. When it loops back
+           to 0%, set B occupies the same position set A started in —
+           making the reset invisible.
+           ─────────────────────────────────────────────────────────── -->
+      <section class="carousel-section" aria-labelledby="latest-title">
+
+        <div class="carousel-bar">
+          <div class="carousel-bar-inner">
+            <h2 id="latest-title">The Latest</h2>
           </div>
+        </div>
 
-        </section>
+        <div class="carousel-outer">
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="carousel-track" role="list" aria-label="Latest articles and newsletters"></div>
+          </div>
+        </div>
 
-      </div><!-- /.page-container -->
+      </section>
+
     </main>
 
     <footer class="site-footer">
