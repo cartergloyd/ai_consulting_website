@@ -364,7 +364,7 @@ function buildVideoCard(video, isDuplicate) {
 
   a.innerHTML =
     `<div class="video-card-img-wrap">` +
-    `<img class="video-card-img" src="https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg" alt="${video.title}" loading="lazy" decoding="async">` +
+    `<img class="video-card-img" src="https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg" alt="${video.title}" loading="eager" decoding="async">` +
     `<div class="video-card-play">${PLAY_ICON}</div>` +
     `</div>` +
     `<div class="video-card-meta">` +
