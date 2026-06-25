@@ -4,7 +4,7 @@
   --champagne: #f5e6a3;
   --white: #f4f4f6;
   --line: rgba(245, 230, 163, 0.24);
-  --glass: rgba(13, 13, 13, 0.56);
+  --glass: rgba(13, 13, 13, 0.38);
   --shadow: rgba(0, 0, 0, 0.42);
   font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
@@ -89,10 +89,10 @@ button {
   justify-content: center;
   min-height: 46px;
   padding: 0 18px;
-  border: 1px solid rgba(184, 150, 12, 0.88);
+  border: 1px solid rgba(184, 150, 12, 0.72);
   border-radius: 4px;
   color: var(--black);
-  background: var(--gold);
+  background: rgba(184, 150, 12, 0.72);
   font-size: 0.78rem;
   font-weight: 500;
   text-transform: uppercase;
