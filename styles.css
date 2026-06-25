@@ -656,6 +656,149 @@ button { font: inherit; }
 
 
 /* ═══════════════════════════════════════════════════════════════════
+   VIDEO CAROUSEL SECTION
+   Same loop mechanic as the article carousel; separate keyframe name
+   allows independent speed (80s for 19 cards vs. 50s for 8 cards,
+   keeping per-card viewing time roughly equal).
+   ═══════════════════════════════════════════════════════════════════ */
+.video-section {
+  background: var(--black);
+  border-top: 1px solid var(--line);
+}
+
+.video-section-header {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  padding-top: clamp(48px, 7vw, 80px);
+  padding-bottom: clamp(20px, 3vw, 32px);
+}
+
+.video-section-title {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(0.7rem, 1vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(244, 244, 246, 0.46);
+  margin: 0;
+}
+
+.video-carousel-outer {
+  padding-bottom: clamp(48px, 7vw, 80px);
+}
+
+.video-carousel-viewport {
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.video-carousel-viewport:hover .video-carousel-track {
+  animation-play-state: paused;
+}
+
+.video-carousel-track {
+  display: flex;
+  width: max-content;
+  animation: video-carousel-scroll 80s linear infinite;
+  will-change: transform;
+}
+
+@keyframes video-carousel-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.video-card {
+  flex-shrink: 0;
+  width: clamp(220px, 26vw, 340px);
+  margin-right: 24px;
+  color: var(--white);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.video-card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1a1a1a;
+  transition: transform 0.35s ease;
+}
+
+.video-card:hover .video-card-img-wrap {
+  transform: scale(1.03);
+}
+
+.video-card-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.video-card-play svg {
+  width: 44px;
+  height: 44px;
+  opacity: 0.88;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.video-card:hover .video-card-play svg {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.video-card-meta {
+  padding: 10px 2px 0;
+  display: grid;
+  gap: 4px;
+}
+
+.video-card-title {
+  font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--white);
+}
+
+.video-card-source {
+  font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.66rem;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(244, 244, 246, 0.46);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
    RESPONSIVE BREAKPOINTS
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -730,6 +873,10 @@ button { font: inherit; }
   .carousel-card {
     width: clamp(160px, 58vw, 240px);
   }
+
+  .video-card {
+    width: clamp(160px, 58vw, 240px);
+  }
 }
 
 /* ── 320px: minimum viewport ────────────────────────────────────── */
@@ -744,6 +891,7 @@ button { font: inherit; }
   }
 
   .carousel-card { width: 160px; }
+  .video-card { width: 160px; }
 }
 
 /* ── Reduced motion: stop auto-scroll; allow manual horizontal swipe ──
@@ -767,6 +915,23 @@ button { font: inherit; }
 
   /* Hide the duplicate set in static mode */
   .carousel-card[aria-hidden="true"] {
+    display: none;
+  }
+
+  .video-carousel-track {
+    animation: none;
+  }
+
+  .video-carousel-viewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .video-carousel-viewport::-webkit-scrollbar { display: none; }
+
+  .video-card[aria-hidden="true"] {
     display: none;
   }
 }

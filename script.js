@@ -235,3 +235,148 @@ if (track && CAROUSEL_CARDS.length > 0) {
   // Set B — duplicates for seamless loop, hidden from assistive tech
   CAROUSEL_CARDS.forEach((card) => track.appendChild(buildCarouselCard(card, true)));
 }
+
+
+/* ── Video carousel ──────────────────────────────────────────────────
+
+   Same seamless-loop mechanic as the article carousel above.
+   Playlist data is auto-updated by scripts/update-youtube-feed.mjs.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* youtube-cards:start */
+const VIDEO_CARDS = [
+  {
+    videoId: "yyvVUEPSCu0",
+    title: "Introducing workspace agents in ChatGPT",
+    source: "ChatGPT Workspace Agents",
+  },
+  {
+    videoId: "-UN9sNqQ0t4",
+    title: "AI Fluency: Framework & Foundations Course Trailer",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "bk2H8WfHZZk",
+    title: "Product feedback routing agent",
+    source: "ChatGPT Workspace Agents",
+  },
+  {
+    videoId: "JpGtOfSgR-c",
+    title: "Lesson 1: Introduction to AI Fluency",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "HJlME6S-LJc",
+    title: "Lead outreach agent",
+    source: "ChatGPT Workspace Agents",
+  },
+  {
+    videoId: "4szRHy_CT7s",
+    title: "Lesson 2A: Why do we need AI Fluency?",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "HnSPedbA02Q",
+    title: "Third-party risk management agent",
+    source: "ChatGPT Workspace Agents",
+  },
+  {
+    videoId: "W4Ua6XFfX9w",
+    title: "Lesson 2B: The 4D Framework",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "7ZVYmoqqnCg",
+    title: "Software review agent",
+    source: "ChatGPT Workspace Agents",
+  },
+  {
+    videoId: "RyvXxApfHkk",
+    title: "Lesson 3A: What is generative AI? (Deep Dive)",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "H5rSp32VwV8",
+    title: "Weekly metrics reporting agent",
+    source: "ChatGPT Workspace Agents",
+  },
+  {
+    videoId: "W5cga7xipRI",
+    title: "Lesson 3B: Capabilities & limitations",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "HaaKUFAOi84",
+    title: "Admin and builder controls",
+    source: "ChatGPT Workspace Agents",
+  },
+  {
+    videoId: "EljzyfdYkrc",
+    title: "Lesson 4: A closer look at Delegation",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "DmgujoZ1mmk",
+    title: "Lesson 6: A closer look at Description",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "2YCaBqP8muw",
+    title: "Lesson 7: Effective prompting techniques (Deep Dive)",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "Y0KidGr9Z2Y",
+    title: "Lesson 8: A closer look at Discernment",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "QbLf2zb3oPc",
+    title: "Lesson 10: A closer look at Diligence",
+    source: "AI Fluency Course",
+  },
+  {
+    videoId: "ytEN_iAk09c",
+    title: "Lesson 11: Conclusion",
+    source: "AI Fluency Course",
+  },
+];
+/* youtube-cards:end */
+
+const PLAY_ICON =
+  `<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">` +
+  `<circle cx="24" cy="24" r="24" fill="rgba(0,0,0,0.52)"/>` +
+  `<path d="M20 15.5l15 8.5-15 8.5V15.5z" fill="white"/>` +
+  `</svg>`;
+
+function buildVideoCard(video, isDuplicate) {
+  const a = document.createElement("a");
+  a.className = "video-card";
+  a.href = `https://www.youtube.com/watch?v=${video.videoId}`;
+  a.target = "_blank";
+  a.rel = "noopener";
+  a.setAttribute("role", "listitem");
+
+  if (isDuplicate) {
+    a.setAttribute("aria-hidden", "true");
+    a.tabIndex = -1;
+  }
+
+  a.innerHTML =
+    `<div class="video-card-img-wrap">` +
+    `<img class="video-card-img" src="https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg" alt="${video.title}" loading="lazy" decoding="async">` +
+    `<div class="video-card-play">${PLAY_ICON}</div>` +
+    `</div>` +
+    `<div class="video-card-meta">` +
+    `<span class="video-card-title">${video.title}</span>` +
+    `<span class="video-card-source">${video.source}</span>` +
+    `</div>`;
+
+  return a;
+}
+
+const videoTrack = document.getElementById("video-carousel-track");
+if (videoTrack && VIDEO_CARDS.length > 0) {
+  VIDEO_CARDS.forEach((v) => videoTrack.appendChild(buildVideoCard(v, false)));
+  VIDEO_CARDS.forEach((v) => videoTrack.appendChild(buildVideoCard(v, true)));
+}
