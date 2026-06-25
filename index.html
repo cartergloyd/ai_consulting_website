@@ -12,15 +12,20 @@
   </head>
   <body>
     <main class="homepage">
+
+      <!-- ── Fixed navigation ribbon ───────────────────────────────── -->
       <header class="ribbon" aria-label="Primary navigation">
-        <a class="wordmark" href="/" aria-label="goldAI homepage">goldAI</a>
-        <div class="ribbon-actions">
-          <a class="contact-button" href="contact.html">Contact Us</a>
-          <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
+        <!-- ribbon-inner constrains wordmark + actions to --content-width -->
+        <div class="ribbon-inner">
+          <a class="wordmark" href="/" aria-label="goldAI homepage">goldAI</a>
+          <div class="ribbon-actions">
+            <a class="contact-button" href="contact.html">Contact Us</a>
+            <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
         </div>
       </header>
 
@@ -32,132 +37,148 @@
         <a href="industries.html">Industries</a>
       </nav>
 
-      <section class="hero" aria-labelledby="hero-title">
-        <video class="hero-bg" autoplay muted loop playsinline poster="assets/enterprise-command-center.png">
-          <source src="assets/hero.mp4" type="video/mp4">
-        </video>
-        <div class="hero-content">
-          <div class="hero-text">
-            <div class="hero-badge">
-              <span class="hero-badge-icon"></span>
-              <span class="hero-badge-name">goldAI</span>
-              <span class="hero-badge-tag">AI Workflow Consulting</span>
-            </div>
-            <h1 id="hero-title">The gap between AI potential and results is where we live.</h1>
-          </div>
-          <div class="hero-actions" aria-label="Hero actions">
-            <a href="contact.html">Engage</a>
-            <a href="approach.html">Research</a>
-          </div>
-        </div>
-      </section>
+      <!-- ── Centered content container (max-width: --content-width) ─ -->
+      <div class="page-container">
 
-      <section class="latest" aria-labelledby="latest-title">
-        <div class="latest-bar">
-          <h2 id="latest-title">The Latest</h2>
-        </div>
-        <div class="latest-grid">
-          <section class="latest-column" aria-labelledby="articles-title">
-            <div class="column-label" id="articles-title">Articles</div>
-            <div class="feed-stack" id="axios-feed" aria-live="polite">
-              <!-- axios-feed:start -->
-              <a class="latest-card" href="https://www.axios.com/2026/04/28/openai-microsoft-cloud-amazon" target="_blank" rel="noopener">
-                <img class="card-image" src="assets/axios-feed/01-openai-microsoft-cloud-amazon.jpg" alt="">
-                <div class="card-body">
-                  <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
-                  <h3>OpenAI breaks free of Microsoft's cloud</h3>
-                </div>
-              </a>
-              <a class="latest-card" href="https://www.axios.com/2026/04/28/improve-your-ai-prompt" target="_blank" rel="noopener">
-                <img class="card-image" src="assets/axios-feed/02-improve-your-ai-prompt.gif" alt="">
-                <div class="card-body">
-                  <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
-                  <h3>Axios Finish Line: Prompt like a pro</h3>
-                </div>
-              </a>
-              <a class="latest-card" href="https://www.axios.com/2026/04/26/ai-cost-human-workers" target="_blank" rel="noopener">
-                <img class="card-image" src="assets/axios-feed/03-ai-cost-human-workers.jpg" alt="">
-                <div class="card-body">
-                  <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
-                  <h3>AI can cost more than human workers now</h3>
-                </div>
-              </a>
-              <a class="latest-card" href="https://www.axios.com/2026/04/24/catholics-pope-vatican-artificial-intelligence" target="_blank" rel="noopener">
-                <img class="card-image" src="assets/axios-feed/04-catholics-pope-vatican-artificial-intelligence.jpg" alt="">
-                <div class="card-body">
-                  <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
-                  <h3>The pope moves to police AI</h3>
-                </div>
-              </a>
-              <a class="latest-card" href="https://www.axios.com/2026/04/24/trump-missed-ai-deadlines" target="_blank" rel="noopener">
-                <img class="card-image" src="assets/axios-feed/05-trump-missed-ai-deadlines.gif" alt="">
-                <div class="card-body">
-                  <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
-                  <h3>Trump's missed AI deadlines</h3>
-                </div>
-              </a>
-              <!-- axios-feed:end -->
+        <!-- Hero: .full-bleed escapes the container to span the viewport.
+             .hero-content re-centers text/buttons back to --content-width. -->
+        <section class="hero full-bleed" aria-labelledby="hero-title">
+          <video class="hero-bg" autoplay muted loop playsinline poster="assets/enterprise-command-center.png">
+            <source src="assets/hero.mp4" type="video/mp4">
+          </video>
+          <div class="hero-content">
+            <div class="hero-text">
+              <div class="hero-badge">
+                <span class="hero-badge-icon"></span>
+                <span class="hero-badge-name">goldAI</span>
+                <span class="hero-badge-tag">AI Workflow Consulting</span>
+              </div>
+              <h1 id="hero-title">The gap between AI potential and results is where we live.</h1>
             </div>
-          </section>
+            <div class="hero-actions" aria-label="Hero actions">
+              <a href="contact.html">Engage</a>
+              <a href="approach.html">Research</a>
+            </div>
+          </div>
+        </section>
 
-          <section class="latest-column" aria-labelledby="insights-title">
-            <div class="column-label" id="insights-title">Insights</div>
-            <div class="feed-stack">
-              <!-- newsletters:homepage:start -->
-              <a class="latest-card" href="workflow-notes-02.html">
-                <img class="card-image" src="assets/enterprise-command-center.png" alt="Abstract enterprise command center with infrastructure monitoring signals">
-                <div class="card-body">
-                  <span>Newsletter / Issue 02</span>
-                  <h3>One engineer's workload, zero new hires.</h3>
-                </div>
-              </a>
-              <a class="latest-card" href="workflow-notes-01.html">
-                <img class="card-image" src="assets/latest-workflows.png" alt="Abstract enterprise workflow architecture with gold automation paths">
-                <div class="card-body">
-                  <span>Newsletter / Issue 01</span>
-                  <h3>Turn AI pilots into operating capacity.</h3>
-                </div>
-              </a>
-              <!-- newsletters:homepage:end -->
-              <article class="latest-card">
-                <img class="card-image" src="assets/latest-roi.png" alt="Executive analytics environment showing abstract AI ROI signals">
-                <div class="card-body">
-                  <span>Implementation ROI</span>
-                  <h3>The metrics that prove automation is working after launch.</h3>
-                </div>
-              </article>
-              <article class="latest-card">
-                <img class="card-image" src="assets/latest-workflows.png" alt="Abstract enterprise workflow architecture with gold automation paths">
-                <div class="card-body">
-                  <span>Workflow Design</span>
-                  <h3>How first-principles decomposition turns AI ambition into operating leverage.</h3>
-                </div>
-              </article>
-              <article class="latest-card">
-                <img class="card-image" src="assets/latest-roi.png" alt="Executive analytics environment showing abstract AI ROI signals">
-                <div class="card-body">
-                  <span>Capacity Recovery</span>
-                  <h3>What leaders miss when they measure automation by task count instead of throughput.</h3>
-                </div>
-              </article>
-              <article class="latest-card">
-                <img class="card-image" src="assets/latest-workflows.png" alt="Abstract enterprise workflow architecture with gold automation paths">
-                <div class="card-body">
-                  <span>Embedded Delivery</span>
-                  <h3>Why AI implementation needs to live inside the workflow, not beside it.</h3>
-                </div>
-              </article>
-              <article class="latest-card">
-                <img class="card-image" src="assets/latest-roi.png" alt="Executive analytics environment showing abstract AI ROI signals">
-                <div class="card-body">
-                  <span>Executive Proof</span>
-                  <h3>The business case format that helps COOs separate demos from durable results.</h3>
-                </div>
-              </article>
+        <!-- Latest: section header is full-bleed; grid is 12-column inside container -->
+        <section class="latest" aria-labelledby="latest-title">
+
+          <!-- .latest-bar is full-bleed; .latest-bar-inner re-aligns h2 to the grid -->
+          <div class="latest-bar full-bleed">
+            <div class="latest-bar-inner">
+              <h2 id="latest-title">The Latest</h2>
             </div>
-          </section>
-        </div>
-      </section>
+          </div>
+
+          <!-- 12-column grid: Articles spans cols 1–6, Insights spans cols 7–12 -->
+          <div class="latest-grid">
+
+            <section class="latest-column" aria-labelledby="articles-title">
+              <div class="column-label" id="articles-title">Articles</div>
+              <div class="feed-stack" id="axios-feed" aria-live="polite">
+                <!-- axios-feed:start -->
+                <a class="latest-card" href="https://www.axios.com/2026/04/28/openai-microsoft-cloud-amazon" target="_blank" rel="noopener">
+                  <img class="card-image" src="assets/axios-feed/01-openai-microsoft-cloud-amazon.jpg" alt="">
+                  <div class="card-body">
+                    <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
+                    <h3>OpenAI breaks free of Microsoft's cloud</h3>
+                  </div>
+                </a>
+                <a class="latest-card" href="https://www.axios.com/2026/04/28/improve-your-ai-prompt" target="_blank" rel="noopener">
+                  <img class="card-image" src="assets/axios-feed/02-improve-your-ai-prompt.gif" alt="">
+                  <div class="card-body">
+                    <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
+                    <h3>Axios Finish Line: Prompt like a pro</h3>
+                  </div>
+                </a>
+                <a class="latest-card" href="https://www.axios.com/2026/04/26/ai-cost-human-workers" target="_blank" rel="noopener">
+                  <img class="card-image" src="assets/axios-feed/03-ai-cost-human-workers.jpg" alt="">
+                  <div class="card-body">
+                    <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
+                    <h3>AI can cost more than human workers now</h3>
+                  </div>
+                </a>
+                <a class="latest-card" href="https://www.axios.com/2026/04/24/catholics-pope-vatican-artificial-intelligence" target="_blank" rel="noopener">
+                  <img class="card-image" src="assets/axios-feed/04-catholics-pope-vatican-artificial-intelligence.jpg" alt="">
+                  <div class="card-body">
+                    <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
+                    <h3>The pope moves to police AI</h3>
+                  </div>
+                </a>
+                <a class="latest-card" href="https://www.axios.com/2026/04/24/trump-missed-ai-deadlines" target="_blank" rel="noopener">
+                  <img class="card-image" src="assets/axios-feed/05-trump-missed-ai-deadlines.gif" alt="">
+                  <div class="card-body">
+                    <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
+                    <h3>Trump's missed AI deadlines</h3>
+                  </div>
+                </a>
+                <!-- axios-feed:end -->
+              </div>
+            </section>
+
+            <section class="latest-column" aria-labelledby="insights-title">
+              <div class="column-label" id="insights-title">Insights</div>
+              <div class="feed-stack">
+                <!-- newsletters:homepage:start -->
+                <a class="latest-card" href="workflow-notes-02.html">
+                  <img class="card-image" src="assets/enterprise-command-center.png" alt="Abstract enterprise command center with infrastructure monitoring signals">
+                  <div class="card-body">
+                    <span>Newsletter / Issue 02</span>
+                    <h3>One engineer's workload, zero new hires.</h3>
+                  </div>
+                </a>
+                <a class="latest-card" href="workflow-notes-01.html">
+                  <img class="card-image" src="assets/latest-workflows.png" alt="Abstract enterprise workflow architecture with gold automation paths">
+                  <div class="card-body">
+                    <span>Newsletter / Issue 01</span>
+                    <h3>Turn AI pilots into operating capacity.</h3>
+                  </div>
+                </a>
+                <!-- newsletters:homepage:end -->
+                <article class="latest-card">
+                  <img class="card-image" src="assets/latest-roi.png" alt="Executive analytics environment showing abstract AI ROI signals">
+                  <div class="card-body">
+                    <span>Implementation ROI</span>
+                    <h3>The metrics that prove automation is working after launch.</h3>
+                  </div>
+                </article>
+                <article class="latest-card">
+                  <img class="card-image" src="assets/latest-workflows.png" alt="Abstract enterprise workflow architecture with gold automation paths">
+                  <div class="card-body">
+                    <span>Workflow Design</span>
+                    <h3>How first-principles decomposition turns AI ambition into operating leverage.</h3>
+                  </div>
+                </article>
+                <article class="latest-card">
+                  <img class="card-image" src="assets/latest-roi.png" alt="Executive analytics environment showing abstract AI ROI signals">
+                  <div class="card-body">
+                    <span>Capacity Recovery</span>
+                    <h3>What leaders miss when they measure automation by task count instead of throughput.</h3>
+                  </div>
+                </article>
+                <article class="latest-card">
+                  <img class="card-image" src="assets/latest-workflows.png" alt="Abstract enterprise workflow architecture with gold automation paths">
+                  <div class="card-body">
+                    <span>Embedded Delivery</span>
+                    <h3>Why AI implementation needs to live inside the workflow, not beside it.</h3>
+                  </div>
+                </article>
+                <article class="latest-card">
+                  <img class="card-image" src="assets/latest-roi.png" alt="Executive analytics environment showing abstract AI ROI signals">
+                  <div class="card-body">
+                    <span>Executive Proof</span>
+                    <h3>The business case format that helps COOs separate demos from durable results.</h3>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+          </div><!-- /.latest-grid -->
+        </section><!-- /.latest -->
+
+      </div><!-- /.page-container -->
     </main>
 
     <footer class="site-footer">
