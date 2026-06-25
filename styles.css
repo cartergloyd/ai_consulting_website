@@ -371,31 +371,6 @@ button { font: inherit; }
      identical to every other inter-card gap, removing the seam.
    ═══════════════════════════════════════════════════════════════════ */
 
-/* Section label bar — naturally full-width, h2 aligned to content grid */
-.carousel-bar {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: rgba(13, 13, 13, 0.94);
-}
-
-/* Constrains the label text to --content-width, matching the hero layout */
-.carousel-bar-inner {
-  display: flex;
-  align-items: center;
-  min-height: 84px;
-  max-width: var(--content-width);
-  margin-inline: auto;
-  padding-inline: var(--gutter);
-}
-
-.carousel-bar h2 {
-  margin: 0;
-  color: var(--champagne);
-  font-size: clamp(1.05rem, 2vw, 1.55rem);
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
 /* Outer stage — naturally full-width, provides vertical rhythm */
 .carousel-outer {
   padding-block: clamp(32px, 5vw, 56px);
@@ -517,6 +492,166 @@ button { font: inherit; }
   color: rgba(244, 244, 246, 0.46);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════
+   CAREERS SECTION
+   Minimalist Apple-style application form. Generous negative space,
+   centered content, nothing unnecessary on screen.
+   ═══════════════════════════════════════════════════════════════════ */
+.careers-section {
+  padding-block: clamp(96px, 14vw, 160px);
+  background: var(--black);
+  border-top: 1px solid var(--line);
+}
+
+/* Centers content to --content-width; form itself is narrower (see .careers-body) */
+.careers-inner {
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.careers-headline {
+  margin: 0 0 clamp(36px, 5vw, 56px);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(3.2rem, 7vw, 7.2rem);
+  font-weight: 600;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  color: var(--white);
+}
+
+/* Form stack: narrower than the section so inputs feel slim and elegant */
+.careers-body {
+  width: 100%;
+  max-width: 420px;
+}
+
+.careers-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── Shared input/button shape ────────────────────────────────────────
+   border-radius: 999px — pulled from .hero-actions a, the "Engage" and
+   "Research" pill buttons. Applying the same value here ties the form
+   elements visually to the page's primary interactive affordance.
+   ─────────────────────────────────────────────────────────────── */
+.careers-input,
+.careers-upload {
+  border-radius: 999px;
+}
+
+/* Email field */
+.careers-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 22px;
+  border: 1px solid rgba(245, 230, 163, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: 0.88rem;
+  outline: none;
+  transition: border-color 200ms ease, background 200ms ease, box-shadow 200ms ease;
+  -webkit-appearance: none;
+}
+
+.careers-input::placeholder {
+  color: rgba(244, 244, 246, 0.28);
+}
+
+.careers-input:focus {
+  border-color: rgba(184, 150, 12, 0.7);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 0 3px rgba(184, 150, 12, 0.1);
+}
+
+.careers-input.is-invalid {
+  border-color: rgba(220, 70, 70, 0.65);
+  box-shadow: 0 0 0 3px rgba(220, 70, 70, 0.1);
+}
+
+/* Upload résumé — styled label acts as a button over the hidden file input */
+.careers-upload {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border: 1px solid rgba(245, 230, 163, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(244, 244, 246, 0.52);
+  font-family: "DM Mono", ui-monospace, monospace;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: border-color 200ms ease, background 200ms ease, color 200ms ease;
+  overflow: hidden;
+}
+
+.careers-upload:hover {
+  border-color: rgba(245, 230, 163, 0.44);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--white);
+}
+
+/* Hidden native file picker; covers the label so the whole area is clickable */
+.careers-file {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.careers-upload-label {
+  pointer-events: none;
+  transition: color 200ms ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+}
+
+/* Submit button — gold fill, same pill radius */
+.careers-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  border: none;
+  border-radius: 999px; /* matches .hero-actions a:first-child */
+  background: var(--gold);
+  color: var(--black);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+
+.careers-submit:hover {
+  opacity: 0.78;
+}
+
+/* Confirmation message — initially hidden; revealed by JS after submit.
+   Inherits the transition styles injected inline during the animation. */
+.careers-confirmation {
+  display: none;
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  font-weight: 400;
+  color: rgba(244, 244, 246, 0.6);
+  letter-spacing: -0.01em;
 }
 
 

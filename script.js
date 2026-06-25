@@ -136,6 +136,83 @@ function buildCarouselCard(card, isDuplicate) {
   return a;
 }
 
+/* ── Careers form ────────────────────────────────────────────────────
+   Handles: email validation, filename display, submit transition.
+   Does NOT send data anywhere — see the TODO below.
+   ─────────────────────────────────────────────────────────────────── */
+(function () {
+  const form = document.getElementById("careers-form");
+  const confirmation = document.getElementById("careers-confirmation");
+  if (!form || !confirmation) return;
+
+  const emailInput = form.querySelector(".careers-input");
+  const fileInput = form.querySelector(".careers-file");
+  const uploadLabel = form.querySelector(".careers-upload-label");
+
+  // Show selected filename in the upload button
+  fileInput.addEventListener("change", () => {
+    const file = fileInput.files[0];
+    uploadLabel.textContent = file ? file.name : "Upload résumé";
+  });
+
+  // Clear invalid state as soon as the user starts correcting their email
+  emailInput.addEventListener("input", () => {
+    emailInput.classList.remove("is-invalid");
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!emailOk) {
+      emailInput.classList.add("is-invalid");
+      emailInput.focus();
+      return;
+    }
+
+    // TODO: wire up to backend — POST { email, resume: fileInput.files[0] } to /api/apply
+
+    // ── Submit transition ─────────────────────────────────────────────
+    // Apple-smooth ease-out cubic-bezier over ~400–500ms.
+    // prefers-reduced-motion: instant swap, no animation.
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduced) {
+      form.style.display = "none";
+      confirmation.style.display = "block";
+      return;
+    }
+
+    // Phase 1: form fades + slides up (400ms ease-out)
+    form.style.transition =
+      "opacity 400ms cubic-bezier(0.25, 0.1, 0.25, 1), transform 400ms cubic-bezier(0.25, 0.1, 0.25, 1)";
+    form.style.opacity = "0";
+    form.style.transform = "translateY(-14px)";
+
+    setTimeout(() => {
+      // Phase 2: hide form, stage confirmation below its resting position
+      form.style.display = "none";
+      confirmation.style.opacity = "0";
+      confirmation.style.transform = "translateY(14px)";
+      confirmation.style.display = "block";
+
+      // Force reflow so the browser registers the start state before transitioning
+      void confirmation.offsetHeight;
+
+      // Phase 3: confirmation fades + slides up into place (500ms ease-out)
+      confirmation.style.transition =
+        "opacity 500ms cubic-bezier(0.25, 0.1, 0.25, 1), transform 500ms cubic-bezier(0.25, 0.1, 0.25, 1)";
+      confirmation.style.opacity = "1";
+      confirmation.style.transform = "translateY(0)";
+    }, 420); // wait for phase 1 to finish before swapping
+    // ─────────────────────────────────────────────────────────────────
+  });
+})();
+
+/* ── Carousel ──────────────────────────────────────────────────────── */
+
 const track = document.getElementById("carousel-track");
 if (track && CAROUSEL_CARDS.length > 0) {
   // Set A — real cards, accessible

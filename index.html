@@ -36,10 +36,7 @@
         <a href="industries.html">Industries</a>
       </nav>
 
-      <!-- ── Hero ──────────────────────────────────────────────────────
-           Naturally full-width as a block child of <main>.
-           .hero-content re-centers text/buttons to --content-width.
-           ─────────────────────────────────────────────────────────── -->
+      <!-- ── Hero ──────────────────────────────────────────────────── -->
       <section class="hero" aria-labelledby="hero-title">
         <video class="hero-bg" autoplay muted loop playsinline poster="assets/enterprise-command-center.png">
           <source src="assets/hero.mp4" type="video/mp4">
@@ -60,31 +57,58 @@
         </div>
       </section>
 
-      <!-- ── Carousel ───────────────────────────────────────────────────
-           Naturally full-width as a block child of <main>.
-           .carousel-bar-inner re-aligns the label to --content-width.
-           Cards are injected by script.js from CAROUSEL_CARDS.
-
-           Loop mechanic: JS renders the card list twice (set A + set B).
-           The CSS animation shifts the track by -50% of its own width,
-           which equals exactly one card-set's width. When it loops back
-           to 0%, set B occupies the same position set A started in —
-           making the reset invisible.
+      <!-- ── Infinite carousel ────────────────────────────────────────
+           Section label bar removed per design update.
+           Cards injected by script.js from CAROUSEL_CARDS.
            ─────────────────────────────────────────────────────────── -->
-      <section class="carousel-section" aria-labelledby="latest-title">
-
-        <div class="carousel-bar">
-          <div class="carousel-bar-inner">
-            <h2 id="latest-title">The Latest</h2>
-          </div>
-        </div>
-
+      <section class="carousel-section" aria-label="The Latest">
         <div class="carousel-outer">
           <div class="carousel-viewport">
             <div class="carousel-track" id="carousel-track" role="list" aria-label="Latest articles and newsletters"></div>
           </div>
         </div>
+      </section>
 
+      <!-- ── Careers ───────────────────────────────────────────────────
+           Minimalist Apple-style application form.
+           JS handles validation + fade/slide confirmation transition.
+           ─────────────────────────────────────────────────────────── -->
+      <section class="careers-section" aria-labelledby="careers-title">
+        <div class="careers-inner">
+          <h2 class="careers-headline" id="careers-title">Join us</h2>
+
+          <div class="careers-body">
+            <form class="careers-form" id="careers-form" novalidate>
+              <input
+                type="email"
+                class="careers-input"
+                id="careers-email"
+                name="email"
+                placeholder="your@company.com"
+                required
+                autocomplete="email"
+                aria-label="Email address"
+              >
+              <!-- File input hidden; label styled as a button -->
+              <label class="careers-upload" aria-label="Upload résumé">
+                <input
+                  type="file"
+                  class="careers-file"
+                  id="careers-resume"
+                  name="resume"
+                  accept=".pdf,.doc,.docx"
+                >
+                <span class="careers-upload-label">Upload résumé</span>
+              </label>
+              <button type="submit" class="careers-submit">Apply</button>
+            </form>
+
+            <!-- Confirmation: revealed by JS after submit -->
+            <p class="careers-confirmation" id="careers-confirmation" role="status" aria-live="polite">
+              We will be in touch.
+            </p>
+          </div>
+        </div>
       </section>
 
     </main>
@@ -102,13 +126,11 @@
           <a href="approach.html">Workflow architecture</a>
           <a href="newsletters.html">Newsletters</a>
           <!-- newsletters:footer:start --><a href="workflow-notes-02.html">Latest newsletter</a><!-- newsletters:footer:end -->
-          <a href="#latest-title">Articles</a>
-          <a href="#latest-title">Insights</a>
         </section>
         <section class="footer-column">
           <h2>Careers</h2>
           <a href="team.html">The team</a>
-          <a href="apply.html">Apply now</a>
+          <a href="#careers-title">Apply now</a>
         </section>
       </div>
       <div class="footer-bottom">
