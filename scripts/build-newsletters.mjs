@@ -7,7 +7,6 @@ const rootDir = path.resolve(__dirname, "..");
 const newslettersDir = path.join(rootDir, "newsletters");
 const archivePath = path.join(rootDir, "newsletters.html");
 const indexPath = path.join(rootDir, "index.html");
-const MAX_HOMEPAGE_CARDS = 3;
 
 function parseFrontmatter(source) {
   const match = source.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
@@ -273,46 +272,18 @@ async function updateArchive(issues) {
   await writeFile(archivePath, updated);
 }
 
-function renderHomepageCard(issue) {
-  const img = issue.meta.image
-    ? `\n                <img class="card-image" src="${escapeHtml(issue.meta.image)}" alt="${escapeHtml(issue.meta.imageAlt || "")}">`
-    : "";
-  return `              <a class="latest-card" href="${escapeHtml(issue.outputFile)}">${img}
-                <div class="card-body">
-                  <span>Newsletter / Issue ${issueNumber(issue.meta.issue)}</span>
-                  <h3>${escapeHtml(issue.meta.title)}</h3>
-                </div>
-              </a>`;
-}
-
-function injectBetweenMarkers(html, startMarker, endMarker, content) {
-  const s = html.indexOf(startMarker);
-  const e = html.indexOf(endMarker);
-  if (s === -1 || e === -1 || e <= s) return html;
-  return `${html.slice(0, s + startMarker.length)}\n${content}\n${html.slice(e)}`;
-}
-
+// Homepage nav and footer links auto-update to the latest issue.
+// Carousel cards (CAROUSEL_CARDS in script.js) are managed manually —
+// add new newsletter entries there when publishing a new issue.
 async function updateHomepage(issues) {
   let html = await readFile(indexPath, "utf8");
-
   const mostRecent = issues[0];
-  const homepageIssues = issues.slice(0, MAX_HOMEPAGE_CARDS);
 
-  // Update the newsletter cards in the Insights column
-  html = injectBetweenMarkers(
-    html,
-    "              <!-- newsletters:homepage:start -->",
-    "              <!-- newsletters:homepage:end -->",
-    homepageIssues.map(renderHomepageCard).join("\n")
-  );
-
-  // Update the nav link to point to the latest issue
   html = html.replace(
     /<!-- newsletters:nav:start -->.*?<!-- newsletters:nav:end -->/s,
     `<!-- newsletters:nav:start --><a href="${escapeHtml(mostRecent.outputFile)}">Latest Newsletter</a><!-- newsletters:nav:end -->`
   );
 
-  // Update the footer link to point to the latest issue
   html = html.replace(
     /<!-- newsletters:footer:start -->.*?<!-- newsletters:footer:end -->/s,
     `<!-- newsletters:footer:start --><a href="${escapeHtml(mostRecent.outputFile)}">Latest newsletter</a><!-- newsletters:footer:end -->`
@@ -359,7 +330,7 @@ async function main() {
   console.log(`  Updated newsletters.html archive (${issues.length} issue${issues.length === 1 ? "" : "s"})`);
 
   await updateHomepage(issues);
-  console.log(`  Updated index.html homepage (${Math.min(issues.length, MAX_HOMEPAGE_CARDS)} card${Math.min(issues.length, MAX_HOMEPAGE_CARDS) === 1 ? "" : "s"})`);
+  console.log(`  Updated index.html nav + footer links → ${issues[0].outputFile}`);
 }
 
 main().catch((error) => {

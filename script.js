@@ -1,3 +1,4 @@
+/* ── Menu toggle ─────────────────────────────────────────────────── */
 const menuButton = document.querySelector(".menu-button");
 const siteMenu = document.querySelector("#site-menu");
 
@@ -12,3 +13,133 @@ siteMenu.addEventListener("click", (event) => {
     menuButton.setAttribute("aria-expanded", "false");
   }
 });
+
+
+/* ── Carousel ────────────────────────────────────────────────────────
+
+   HOW THE SEAMLESS LOOP WORKS
+   ────────────────────────────
+   1. CAROUSEL_CARDS is rendered twice into #carousel-track (set A then
+      set B), producing a flex row like: [A₁ A₂ … A₈ | B₁ B₂ … B₈].
+
+   2. The CSS keyframe `carousel-scroll` animates the track from
+      translateX(0) to translateX(-50%). Because the track is
+      `width: max-content` (two sets wide), -50% = exactly one set's
+      pixel width.
+
+   3. When the animation loops back to 0% the browser resets instantly —
+      but set B is now in the exact same position set A began. The eye
+      sees no jump; the stream appears infinite.
+
+   4. Cards use `margin-right` instead of a flex `gap` so the spacing
+      between A₈ and B₁ matches every other inter-card gap, eliminating
+      a visible seam at the join point.
+
+   5. Set B cards carry aria-hidden="true" and tabIndex=-1 so screen
+      readers and keyboard users only encounter each card once.
+
+   TO ADD A NEW CARD: append an object to CAROUSEL_CARDS below.
+   ─────────────────────────────────────────────────────────────────── */
+const CAROUSEL_CARDS = [
+  {
+    title: "OpenAI breaks free of Microsoft's cloud",
+    source: "Axios",
+    href: "https://www.axios.com/2026/04/28/openai-microsoft-cloud-amazon",
+    img: "assets/axios-feed/01-openai-microsoft-cloud-amazon.jpg",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "One engineer's workload, zero new hires.",
+    source: "Newsletter / Issue 02",
+    href: "workflow-notes-02.html",
+    img: "assets/enterprise-command-center.png",
+    alt: "Abstract enterprise command center with infrastructure monitoring signals",
+    external: false,
+  },
+  {
+    title: "AI can cost more than human workers now",
+    source: "Axios",
+    href: "https://www.axios.com/2026/04/26/ai-cost-human-workers",
+    img: "assets/axios-feed/03-ai-cost-human-workers.jpg",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "Turn AI pilots into operating capacity.",
+    source: "Newsletter / Issue 01",
+    href: "workflow-notes-01.html",
+    img: "assets/latest-workflows.png",
+    alt: "Abstract enterprise workflow architecture with gold automation paths",
+    external: false,
+  },
+  {
+    title: "The pope moves to police AI",
+    source: "Axios",
+    href: "https://www.axios.com/2026/04/24/catholics-pope-vatican-artificial-intelligence",
+    img: "assets/axios-feed/04-catholics-pope-vatican-artificial-intelligence.jpg",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "The metrics that prove automation is working after launch.",
+    source: "Case Study",
+    href: "#",
+    img: "assets/latest-roi.png",
+    alt: "Executive analytics environment showing abstract AI ROI signals",
+    external: false,
+  },
+  {
+    title: "Prompt like a pro",
+    source: "Axios",
+    href: "https://www.axios.com/2026/04/28/improve-your-ai-prompt",
+    img: "assets/axios-feed/02-improve-your-ai-prompt.gif",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "Trump's missed AI deadlines",
+    source: "Axios",
+    href: "https://www.axios.com/2026/04/24/trump-missed-ai-deadlines",
+    img: "assets/axios-feed/05-trump-missed-ai-deadlines.gif",
+    alt: "",
+    external: true,
+  },
+];
+
+function buildCarouselCard(card, isDuplicate) {
+  const a = document.createElement("a");
+  a.className = "carousel-card";
+  a.href = card.href;
+  a.setAttribute("role", "listitem");
+
+  if (card.external) {
+    a.target = "_blank";
+    a.rel = "noopener";
+  }
+
+  // Duplicate set: hidden from screen readers and tab order
+  if (isDuplicate) {
+    a.setAttribute("aria-hidden", "true");
+    a.tabIndex = -1;
+  }
+
+  a.innerHTML =
+    `<div class="carousel-card-img-wrap">` +
+    `<img class="carousel-card-img" src="${card.img}" alt="${card.alt}" loading="lazy" decoding="async">` +
+    `</div>` +
+    `<div class="carousel-card-meta">` +
+    `<span class="carousel-card-title">${card.title}</span>` +
+    `<span class="carousel-card-source">${card.source}</span>` +
+    `</div>`;
+
+  return a;
+}
+
+const track = document.getElementById("carousel-track");
+if (track && CAROUSEL_CARDS.length > 0) {
+  // Set A — real cards, accessible
+  CAROUSEL_CARDS.forEach((card) => track.appendChild(buildCarouselCard(card, false)));
+  // Set B — duplicates for seamless loop, hidden from assistive tech
+  CAROUSEL_CARDS.forEach((card) => track.appendChild(buildCarouselCard(card, true)));
+}
