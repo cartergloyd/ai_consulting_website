@@ -2,39 +2,39 @@
   "feedUrl": "https://api.axios.com/feed/",
   "stories": [
     {
-      "title": "OpenAI breaks free of Microsoft's cloud",
-      "link": "https://www.axios.com/2026/04/28/openai-microsoft-cloud-amazon",
-      "pubDate": "Tue, 28 Apr 2026 09:00:08 +0000",
-      "sourceImage": "https://images.axios.com/FqlxzyIfTxCzMgBtLGvE0aUFPBY=/1366x768/smart/2025/06/16/223351-1750113231652.jpg",
-      "image": "assets/axios-feed/01-openai-microsoft-cloud-amazon.jpg"
+      "title": "China's new open-source model accelerates AI hacking threat",
+      "link": "https://www.axios.com/2026/06/25/china-glm-52-open-source-hackers",
+      "pubDate": "Thu, 25 Jun 2026 17:22:11 +0000",
+      "sourceImage": "https://images.axios.com/2ssjvH4LJYVs1bZ38lxWTuPRUOY=/1366x768/smart/2024/03/20/213558-1710970558576.jpg",
+      "image": "assets/axios-feed/01-china-glm-52-open-source-hackers.jpg"
     },
     {
-      "title": "Axios Finish Line: Prompt like a pro",
-      "link": "https://www.axios.com/2026/04/28/improve-your-ai-prompt",
-      "pubDate": "Tue, 28 Apr 2026 01:25:06 +0000",
-      "sourceImage": "https://images.axios.com/-03-s64-jQG0FcxSoOmfr7fFcUM=/0x0:1280x720/2026/04/27/1777324949925.gif",
-      "image": "assets/axios-feed/02-improve-your-ai-prompt.gif"
+      "title": "Water joins energy as top AI flashpoint",
+      "link": "https://www.axios.com/2026/06/25/water-energy-ai-flashpoint",
+      "pubDate": "Thu, 25 Jun 2026 09:35:05 +0000",
+      "sourceImage": "https://images.axios.com/l5rQnsqoQLyeNZleb9lLpv3d_ZI=/0x0:1920x1080/1366x768/2026/06/24/1782325976397.jpeg",
+      "image": "assets/axios-feed/02-water-energy-ai-flashpoint.jpg"
     },
     {
-      "title": "AI can cost more than human workers now",
-      "link": "https://www.axios.com/2026/04/26/ai-cost-human-workers",
-      "pubDate": "Sun, 26 Apr 2026 11:30:05 +0000",
-      "sourceImage": "https://images.axios.com/xGi5InHs1g6tGzXBN-DfwR1ADqA=/0x0:1920x1080/1366x768/2025/07/02/1751484371498.jpeg",
-      "image": "assets/axios-feed/03-ai-cost-human-workers.jpg"
+      "title": "Exclusive: Codex agents are inching into the mainstream",
+      "link": "https://www.axios.com/2026/06/25/codex-agents-growth-openai",
+      "pubDate": "Thu, 25 Jun 2026 09:00:06 +0000",
+      "sourceImage": "https://images.axios.com/hZyIM1s7pulydYMfmM7Q3x53ewE=/0x0:1920x1080/1366x768/2026/03/11/1773261363723.jpeg",
+      "image": "assets/axios-feed/03-codex-agents-growth-openai.jpg"
     },
     {
-      "title": "The pope moves to police AI",
-      "link": "https://www.axios.com/2026/04/24/catholics-pope-vatican-artificial-intelligence",
-      "pubDate": "Fri, 24 Apr 2026 09:55:05 +0000",
-      "sourceImage": "https://images.axios.com/wDF29ZZ4Jt_BecP8OxE5Q8NXt4I=/0x0:1920x1080/1366x768/2026/04/20/1776717733726.jpeg",
-      "image": "assets/axios-feed/04-catholics-pope-vatican-artificial-intelligence.jpg"
+      "title": "Chamath Palihapitiya rejects the AI jobs apocalypse",
+      "link": "https://www.axios.com/2026/06/24/chamath-palihapitiya-future-of-work-ai",
+      "pubDate": "Wed, 24 Jun 2026 09:10:08 +0000",
+      "sourceImage": "https://images.axios.com/tLYU0IhTLRI_s7cxzGXfiUd5HeQ=/128x128/smart/2026/06/24/1782264958910.png",
+      "image": "assets/axios-feed/04-chamath-palihapitiya-future-of-work-ai.png"
     },
     {
-      "title": "Trump's missed AI deadlines",
-      "link": "https://www.axios.com/2026/04/24/trump-missed-ai-deadlines",
-      "pubDate": "Fri, 24 Apr 2026 09:00:05 +0000",
-      "sourceImage": "https://images.axios.com/9nJCIoi-V42Von5reMgILRn2MbU=/0x0:1920x1080/1920x1080/2026/04/23/1776963126030.gif",
-      "image": "assets/axios-feed/05-trump-missed-ai-deadlines.gif"
+      "title": "Investors may be hitting pause on the AI run-up",
+      "link": "https://www.axios.com/2026/06/24/ai-stocks-chips-selloff",
+      "pubDate": "Wed, 24 Jun 2026 09:02:31 +0000",
+      "sourceImage": "https://graphics.axios.com/hermesv2/2026-06-23-1619-nasdaq-100-/fallbacks/2026-06-23-1619-nasdaq-100--fallback.png",
+      "image": "assets/axios-feed/05-ai-stocks-chips-selloff.png"
     }
   ]
 }

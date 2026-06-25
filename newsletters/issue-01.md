@@ -1,6 +1,7 @@
 ---
 issue: 01
 title: Turn AI pilots into operating capacity.
+type: newsletter
 slug: workflow-notes-01
 date: 2026-01-15
 description: AI work becomes durable when it is attached to a workflow owner, a measurable throughput problem, and a handoff pattern that survives without constant supervision.

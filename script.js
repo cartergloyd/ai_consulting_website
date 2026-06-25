@@ -15,12 +15,95 @@ siteMenu.addEventListener("click", (event) => {
 });
 
 
+/* ── Carousel cards ──────────────────────────────────────────────────
+   Axios articles are auto-updated by scripts/update-axios-feed.mjs.
+   Own content (newsletters, deliverables, case studies) is managed
+   manually in OWN_CARDS below.
+   ─────────────────────────────────────────────────────────────────── */
+
+/* axios-cards:start */
+const AXIOS_CARDS = [
+  {
+    title: "China's new open-source model accelerates AI hacking threat",
+    source: "Axios",
+    href: "https://www.axios.com/2026/06/25/china-glm-52-open-source-hackers",
+    img: "assets/axios-feed/01-china-glm-52-open-source-hackers.jpg",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "Water joins energy as top AI flashpoint",
+    source: "Axios",
+    href: "https://www.axios.com/2026/06/25/water-energy-ai-flashpoint",
+    img: "assets/axios-feed/02-water-energy-ai-flashpoint.jpg",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "Exclusive: Codex agents are inching into the mainstream",
+    source: "Axios",
+    href: "https://www.axios.com/2026/06/25/codex-agents-growth-openai",
+    img: "assets/axios-feed/03-codex-agents-growth-openai.jpg",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "Chamath Palihapitiya rejects the AI jobs apocalypse",
+    source: "Axios",
+    href: "https://www.axios.com/2026/06/24/chamath-palihapitiya-future-of-work-ai",
+    img: "assets/axios-feed/04-chamath-palihapitiya-future-of-work-ai.png",
+    alt: "",
+    external: true,
+  },
+  {
+    title: "Investors may be hitting pause on the AI run-up",
+    source: "Axios",
+    href: "https://www.axios.com/2026/06/24/ai-stocks-chips-selloff",
+    img: "assets/axios-feed/05-ai-stocks-chips-selloff.png",
+    alt: "",
+    external: true,
+  },
+];
+/* axios-cards:end */
+
+/* ── Own content cards ───────────────────────────────────────────────
+   Add newsletter, deliverable, and case study cards here manually.
+   Use source labels: "Newsletter / Issue NN", "Deliverable / Issue NN",
+   "Research / Issue NN", or "Case Study".
+   ─────────────────────────────────────────────────────────────────── */
+const OWN_CARDS = [
+  {
+    title: "One engineer's workload, zero new hires.",
+    source: "Deliverable / Issue 02",
+    href: "workflow-notes-02.html",
+    img: "assets/enterprise-command-center.png",
+    alt: "Abstract enterprise command center with infrastructure monitoring signals",
+    external: false,
+  },
+  {
+    title: "Turn AI pilots into operating capacity.",
+    source: "Newsletter / Issue 01",
+    href: "workflow-notes-01.html",
+    img: "assets/latest-workflows.png",
+    alt: "Abstract enterprise workflow architecture with gold automation paths",
+    external: false,
+  },
+  {
+    title: "The metrics that prove automation is working after launch.",
+    source: "Case Study",
+    href: "#",
+    img: "assets/latest-roi.png",
+    alt: "Executive analytics environment showing abstract AI ROI signals",
+    external: false,
+  },
+];
+
 /* ── Carousel ────────────────────────────────────────────────────────
 
    HOW THE SEAMLESS LOOP WORKS
    ────────────────────────────
    1. CAROUSEL_CARDS is rendered twice into #carousel-track (set A then
-      set B), producing a flex row like: [A₁ A₂ … A₈ | B₁ B₂ … B₈].
+      set B), producing a flex row like: [A₁ A₂ … Aₙ | B₁ B₂ … Bₙ].
 
    2. The CSS keyframe `carousel-scroll` animates the track from
       translateX(0) to translateX(-50%). Because the track is
@@ -32,80 +115,13 @@ siteMenu.addEventListener("click", (event) => {
       sees no jump; the stream appears infinite.
 
    4. Cards use `margin-right` instead of a flex `gap` so the spacing
-      between A₈ and B₁ matches every other inter-card gap, eliminating
-      a visible seam at the join point.
+      between the last card of set A and B₁ matches every other inter-
+      card gap, eliminating a visible seam at the join point.
 
    5. Set B cards carry aria-hidden="true" and tabIndex=-1 so screen
       readers and keyboard users only encounter each card once.
-
-   TO ADD A NEW CARD: append an object to CAROUSEL_CARDS below.
    ─────────────────────────────────────────────────────────────────── */
-const CAROUSEL_CARDS = [
-  {
-    title: "OpenAI breaks free of Microsoft's cloud",
-    source: "Axios",
-    href: "https://www.axios.com/2026/04/28/openai-microsoft-cloud-amazon",
-    img: "assets/axios-feed/01-openai-microsoft-cloud-amazon.jpg",
-    alt: "",
-    external: true,
-  },
-  {
-    title: "One engineer's workload, zero new hires.",
-    source: "Newsletter / Issue 02",
-    href: "workflow-notes-02.html",
-    img: "assets/enterprise-command-center.png",
-    alt: "Abstract enterprise command center with infrastructure monitoring signals",
-    external: false,
-  },
-  {
-    title: "AI can cost more than human workers now",
-    source: "Axios",
-    href: "https://www.axios.com/2026/04/26/ai-cost-human-workers",
-    img: "assets/axios-feed/03-ai-cost-human-workers.jpg",
-    alt: "",
-    external: true,
-  },
-  {
-    title: "Turn AI pilots into operating capacity.",
-    source: "Newsletter / Issue 01",
-    href: "workflow-notes-01.html",
-    img: "assets/latest-workflows.png",
-    alt: "Abstract enterprise workflow architecture with gold automation paths",
-    external: false,
-  },
-  {
-    title: "The pope moves to police AI",
-    source: "Axios",
-    href: "https://www.axios.com/2026/04/24/catholics-pope-vatican-artificial-intelligence",
-    img: "assets/axios-feed/04-catholics-pope-vatican-artificial-intelligence.jpg",
-    alt: "",
-    external: true,
-  },
-  {
-    title: "The metrics that prove automation is working after launch.",
-    source: "Case Study",
-    href: "#",
-    img: "assets/latest-roi.png",
-    alt: "Executive analytics environment showing abstract AI ROI signals",
-    external: false,
-  },
-  {
-    title: "Prompt like a pro",
-    source: "Axios",
-    href: "https://www.axios.com/2026/04/28/improve-your-ai-prompt",
-    img: "assets/axios-feed/02-improve-your-ai-prompt.gif",
-    alt: "",
-    external: true,
-  },
-  {
-    title: "Trump's missed AI deadlines",
-    source: "Axios",
-    href: "https://www.axios.com/2026/04/24/trump-missed-ai-deadlines",
-    img: "assets/axios-feed/05-trump-missed-ai-deadlines.gif",
-    alt: "",
-    external: true,
-  },
-];
+const CAROUSEL_CARDS = [...AXIOS_CARDS, ...OWN_CARDS];
 
 function buildCarouselCard(card, isDuplicate) {
   const a = document.createElement("a");
@@ -211,8 +227,7 @@ function buildCarouselCard(card, isDuplicate) {
   });
 })();
 
-/* ── Carousel ──────────────────────────────────────────────────────── */
-
+/* ── Carousel render ─────────────────────────────────────────────── */
 const track = document.getElementById("carousel-track");
 if (track && CAROUSEL_CARDS.length > 0) {
   // Set A — real cards, accessible

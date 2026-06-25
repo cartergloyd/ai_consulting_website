@@ -117,6 +117,11 @@ function issueNumber(issue) {
   return String(issue).padStart(2, "0");
 }
 
+function formatTypeLabel(type) {
+  const labels = { newsletter: "Newsletter", deliverable: "Deliverable", research: "Research" };
+  return labels[(type || "").toLowerCase()] || "Newsletter";
+}
+
 function renderIssuePage(meta, sections) {
   const imageHtml = meta.image
     ? `\n        <img class="issue-visual" src="${escapeHtml(meta.image)}" alt="${escapeHtml(meta.imageAlt || "")}">`
@@ -160,7 +165,7 @@ ${renderSectionBody(content)}
 
       <article class="newsletter-article">
         <header class="issue-header">
-          <span>Workflow Notes / Issue ${issueNumber(meta.issue)}</span>
+          <span>${formatTypeLabel(meta.type)} / Issue ${issueNumber(meta.issue)}</span>
           <h1>${escapeHtml(meta.title)}</h1>
           ${meta.date ? `<time datetime="${escapeHtml(meta.date)}">${formatDate(meta.date)}</time>` : ""}
         </header>${imageHtml}
@@ -225,7 +230,7 @@ function renderFeaturedCard(issue) {
     : "";
   return `        <a class="issue-card featured" href="${escapeHtml(issue.outputFile)}">${img}
           <div>
-            <span>Issue ${issueNumber(issue.meta.issue)} &mdash; ${escapeHtml(formatDate(issue.meta.date || ""))}</span>
+            <span>${escapeHtml(formatTypeLabel(issue.meta.type))} / Issue ${issueNumber(issue.meta.issue)} &mdash; ${escapeHtml(formatDate(issue.meta.date || ""))}</span>
             <h2>${escapeHtml(issue.meta.title)}</h2>
             <p>${escapeHtml(issue.meta.description || "")}</p>
           </div>
@@ -235,7 +240,7 @@ function renderFeaturedCard(issue) {
 function renderArchiveCard(issue) {
   return `          <a class="issue-card" href="${escapeHtml(issue.outputFile)}">
             <div>
-              <span>Issue ${issueNumber(issue.meta.issue)} &mdash; ${escapeHtml(formatDate(issue.meta.date || ""))}</span>
+              <span>${escapeHtml(formatTypeLabel(issue.meta.type))} / Issue ${issueNumber(issue.meta.issue)} &mdash; ${escapeHtml(formatDate(issue.meta.date || ""))}</span>
               <h2>${escapeHtml(issue.meta.title)}</h2>
               <p>${escapeHtml(issue.meta.description || "")}</p>
             </div>

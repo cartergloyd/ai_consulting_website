@@ -6,7 +6,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
 const feedUrl = "https://api.axios.com/feed/";
 const articleCount = 5;
-const indexPath = path.join(rootDir, "index.html");
+const scriptPath = path.join(rootDir, "script.js");
 const assetDir = path.join(rootDir, "assets", "axios-feed");
 const metadataPath = path.join(assetDir, "metadata.json");
 const fallbackImages = [
@@ -197,29 +197,29 @@ async function downloadImage(story, index) {
   return relativePath;
 }
 
-function renderCards(stories) {
-  return stories.map((story) => `              <a class="latest-card" href="${escapeHtml(story.link)}" target="_blank" rel="noopener">
-                <img class="card-image" src="${escapeHtml(story.image)}" alt="">
-                <div class="card-body">
-                  <img class="source-logo" src="assets/axios-logo.svg" alt="Axios">
-                  <h3>${escapeHtml(story.title)}</h3>
-                </div>
-              </a>`).join("\n");
+function escapeJs(str) {
+  return str
+    .replace(/\\/g, "\\\\")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "");
 }
 
-async function updateIndex(stories) {
-  const indexHtml = await readFile(indexPath, "utf8");
-  const startMarker = "              <!-- axios-feed:start -->";
-  const endMarker = "              <!-- axios-feed:end -->";
-  const start = indexHtml.indexOf(startMarker);
-  const end = indexHtml.indexOf(endMarker);
-
-  if (start === -1 || end === -1 || end <= start) {
-    throw new Error("Could not find axios-feed markers in index.html");
+async function updateCarouselScript(stories) {
+  const source = await readFile(scriptPath, "utf8");
+  const cardLines = stories.map((story) =>
+    `  {\n    title: "${escapeJs(story.title)}",\n    source: "Axios",\n    href: "${escapeJs(story.link)}",\n    img: "${escapeJs(story.image)}",\n    alt: "",\n    external: true,\n  },`
+  );
+  const replacement =
+    `/* axios-cards:start */\nconst AXIOS_CARDS = [\n${cardLines.join("\n")}\n];\n/* axios-cards:end */`;
+  const updated = source.replace(
+    /\/\* axios-cards:start \*\/[\s\S]*?\/\* axios-cards:end \*\//,
+    replacement
+  );
+  if (updated === source) {
+    throw new Error("Could not find /* axios-cards:start/end */ markers in script.js");
   }
-
-  const nextHtml = `${indexHtml.slice(0, start + startMarker.length)}\n${renderCards(stories)}\n${indexHtml.slice(end)}`;
-  await writeFile(indexPath, nextHtml);
+  await writeFile(scriptPath, updated);
 }
 
 async function main() {
@@ -244,7 +244,7 @@ async function main() {
     });
   }
 
-  await updateIndex(stories);
+  await updateCarouselScript(stories);
   await writeFile(`${metadataPath}`, `${JSON.stringify({
     feedUrl,
     stories

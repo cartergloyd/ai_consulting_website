@@ -1,6 +1,7 @@
 ---
 issue: 02
 title: One engineer's workload, zero new hires.
+type: deliverable
 slug: workflow-notes-02
 date: 2026-06-24
 description: An on-prem LLM now triages infrastructure logs autonomously — suppressing noise, escalating real incidents, and teaching itself to get quieter over time.
